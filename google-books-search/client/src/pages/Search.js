@@ -7,20 +7,11 @@ import { Input, FormBtn } from "../components/Form";
 
 class Books extends Component {
   state = {
-    books: []
+    books: [],
+    reloaded: false
   };
 
-  componentWillMount() {
-    this.loadAllBooks();
-  }
-
-  loadAllBooks() {
-    GoogleBooksAPI.getAllBooks().then(res =>
-      this.setState({ books: res.data }, () => {
-        console.log(this.state);
-      })
-    );
-  }
+  componentWillMount() {}
 
   searchForBooks = e => {
     e.preventDefault();
@@ -50,6 +41,18 @@ class Books extends Component {
     // );
   };
 
+  reloadState = e => {
+    e.preventDefault();
+    this.setState(
+      {
+        reloaded: true
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+  };
+
   render() {
     return (
       <Container fluid>
@@ -60,6 +63,7 @@ class Books extends Component {
               <form>
                 <Input />
                 <FormBtn onClick={this.searchForBooks}>Search</FormBtn>
+                <FormBtn onClick={this.reloadState}>Reload State</FormBtn>
               </form>
             </Jumbotron>
           </Col>

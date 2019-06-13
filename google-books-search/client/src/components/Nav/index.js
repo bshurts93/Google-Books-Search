@@ -45,8 +45,9 @@ function Nav() {
             </div>
           </nav>
 
-          <Route path="/search" component={Search} />
+          <Route path="/search" exact component={Search} />
           <Route path="/saved" component={Saved} />
+          <Route path="/" component={Search} />
         </div>
       </Router>
     </div>
