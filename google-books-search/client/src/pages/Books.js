@@ -20,6 +20,13 @@ class Books extends Component {
     );
   }
 
+  searchForBooks(e) {
+    e.preventDefault();
+    const input = document.querySelector(".form-group input").value;
+    console.log(input);
+    GoogleBooksAPI.searchGoogleBooks(input);
+  }
+
   render() {
     return (
       <Container fluid>
@@ -29,14 +36,7 @@ class Books extends Component {
               <h3>SEARCH</h3>
               <form>
                 <Input />
-                <FormBtn
-                  onClick={function(e) {
-                    e.preventDefault();
-                    GoogleBooksAPI.searchGoogleBooks("Harry Potter");
-                  }}
-                >
-                  Search
-                </FormBtn>
+                <FormBtn onClick={this.searchForBooks}>Search</FormBtn>
               </form>
             </Jumbotron>
           </Col>
