@@ -26,6 +26,6 @@ export default {
           booksData.push(bookData);
         });
       });
-    console.log(booksData);
+    return booksData;
   }
 };

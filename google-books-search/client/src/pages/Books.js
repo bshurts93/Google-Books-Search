@@ -20,12 +20,19 @@ class Books extends Component {
     );
   }
 
-  searchForBooks(e) {
+  searchForBooks = e => {
     e.preventDefault();
     const input = document.querySelector(".form-group input").value;
-    console.log(input);
-    GoogleBooksAPI.searchGoogleBooks(input);
-  }
+    const results = GoogleBooksAPI.searchGoogleBooks(input);
+    this.setState(
+      {
+        books: results
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+  };
 
   render() {
     return (
