@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 
 function List({ children }) {
   return (
@@ -9,7 +10,7 @@ function List({ children }) {
 }
 
 function ListItem({ children }) {
-  return <li className="book-list-item">{children}</li>;
+  return <div className="book-list-item">{children}</div>;
 }
 
 export { List, ListItem };
