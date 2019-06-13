@@ -27,6 +27,17 @@ class Books extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h3>SEARCH</h3>
+              <form>
+                <Input />
+                <FormBtn
+                  onClick={function(e) {
+                    e.preventDefault();
+                    GoogleBooksAPI.searchGoogleBooks("Harry Potter");
+                  }}
+                >
+                  Search
+                </FormBtn>
+              </form>
             </Jumbotron>
           </Col>
         </Row>
