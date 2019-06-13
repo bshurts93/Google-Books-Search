@@ -17,8 +17,9 @@ export default {
           const book = element.volumeInfo;
 
           const bookData = {
+            id: element.id,
             title: book.title,
-            author: book.authors,
+            author: book.authors.join(", ") || "N/A",
             description: book.description,
             image: book.imageLinks.thumbnail,
             link: book.infoLink

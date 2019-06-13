@@ -3,9 +3,8 @@ import Jumbotron from "../components/Jumbotron";
 import GoogleBooksAPI from "../utils/GoogleBooksAPI";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, FormBtn } from "../components/Form";
 
-class Books extends Component {
+class Saved extends Component {
   state = {
     books: []
   };
@@ -56,11 +55,7 @@ class Books extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h3>SEARCH</h3>
-              <form>
-                <Input />
-                <FormBtn onClick={this.searchForBooks}>Search</FormBtn>
-              </form>
+              <h3>SAVED</h3>
             </Jumbotron>
           </Col>
         </Row>
@@ -68,7 +63,7 @@ class Books extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h3>RESULTS</h3>
+              <h3>My Books</h3>
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
@@ -86,4 +81,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Saved;
