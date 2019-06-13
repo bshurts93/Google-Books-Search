@@ -19,11 +19,18 @@ export default {
           const bookData = {
             id: element.id,
             title: book.title,
-            author: book.authors.join(", ") || "N/A",
+            author: book.authors,
             description: book.description,
             image: book.imageLinks.thumbnail,
             link: book.infoLink
           };
+
+          if (book.authors === undefined) {
+            bookData.author = "N/A";
+          } else {
+            bookData.author = book.authors.join(", ");
+          }
+
           booksData.push(bookData);
         });
       });
