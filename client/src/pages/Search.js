@@ -7,8 +7,7 @@ import { Input, FormBtn } from "../components/Form";
 
 class Books extends Component {
   state = {
-    books: [],
-    reloaded: false
+    books: []
   };
 
   componentWillMount() {}
@@ -16,29 +15,15 @@ class Books extends Component {
   searchForBooks = e => {
     e.preventDefault();
     const input = document.querySelector(".form-group input").value;
-    const results = GoogleBooksAPI.searchGoogleBooks(input);
 
-    // fetch(GoogleBooksAPI.searchGoogleBooks(input)).then(res => {
-    //   console.log(res);
-    //   // this.setState({
-    //   //   books: res
-    //   // });
-    // });
-    this.setState({
-      books: results
-    });
-  };
-
-  reloadState = e => {
-    e.preventDefault();
-    this.setState(
-      {
-        reloaded: true
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    fetch("https://www.googleapis.com/books/v1/volumes?q=" + input)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.items);
+        this.setState({
+          books: GoogleBooksAPI.parseApiData(data.items)
+        });
+      });
   };
 
   render() {
@@ -52,7 +37,6 @@ class Books extends Component {
                 <form>
                   <Input />
                   <FormBtn onClick={this.searchForBooks}>Search</FormBtn>
-                  <FormBtn onClick={this.reloadState}>Reload State</FormBtn>
                 </form>
               </div>
             </Jumbotron>

@@ -21,6 +21,10 @@ class Saved extends Component {
     );
   }
 
+  deleteBook(id) {
+    GoogleBooksAPI.deleteBook(id);
+  }
+
   render() {
     return (
       <Container fluid>
@@ -44,9 +48,7 @@ class Saved extends Component {
                     </h4>
                     <button
                       data-id={book._id}
-                      onClick={() => {
-                        GoogleBooksAPI.deleteBook(book._id);
-                      }}
+                      onClick={() => this.deleteBook(book._id)}
                     >
                       Delete
                     </button>
