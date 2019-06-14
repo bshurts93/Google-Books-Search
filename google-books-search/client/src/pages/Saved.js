@@ -21,34 +21,6 @@ class Saved extends Component {
     );
   }
 
-  searchForBooks = e => {
-    e.preventDefault();
-    const input = document.querySelector(".form-group input").value;
-    const results = GoogleBooksAPI.searchGoogleBooks(input);
-
-    this.setState(
-      {
-        books: results
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
-    // this.setState(
-    //   {
-    //     books: [
-    //       {
-    //         title: "TEST 1",
-    //         author: "TEST 1"
-    //       }
-    //     ]
-    //   },
-    //   () => {
-    //     console.log(this.state);
-    //   }
-    // );
-  };
-
   render() {
     return (
       <Container fluid>
@@ -67,9 +39,17 @@ class Saved extends Component {
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
-                    <a href={"/books/" + book._id}>
+                    <h4>
                       {book.title} by {book.author}
-                    </a>
+                    </h4>
+                    <button
+                      data-id={book._id}
+                      onClick={() => {
+                        GoogleBooksAPI.deleteBook(book._id);
+                      }}
+                    >
+                      Delete
+                    </button>
                   </ListItem>
                 ))}
               </List>

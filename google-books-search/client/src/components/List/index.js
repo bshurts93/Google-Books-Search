@@ -2,11 +2,7 @@ import React from "react";
 import "./style.css";
 
 function List({ children }) {
-  return (
-    <div className="container">
-      <ul className="book-list">{children}</ul>
-    </div>
-  );
+  return <div className="container-fluid">{children}</div>;
 }
 
 function ListItem({ children }) {

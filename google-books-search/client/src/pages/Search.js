@@ -18,27 +18,15 @@ class Books extends Component {
     const input = document.querySelector(".form-group input").value;
     const results = GoogleBooksAPI.searchGoogleBooks(input);
 
-    this.setState(
-      {
-        books: results
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
-    // this.setState(
-    //   {
-    //     books: [
-    //       {
-    //         title: "TEST 1",
-    //         author: "TEST 1"
-    //       }
-    //     ]
-    //   },
-    //   () => {
-    //     console.log(this.state);
-    //   }
-    // );
+    // fetch(GoogleBooksAPI.searchGoogleBooks(input)).then(res => {
+    //   console.log(res);
+    //   // this.setState({
+    //   //   books: res
+    //   // });
+    // });
+    this.setState({
+      books: results
+    });
   };
 
   reloadState = e => {
@@ -59,12 +47,14 @@ class Books extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h3>SEARCH</h3>
-              <form>
-                <Input />
-                <FormBtn onClick={this.searchForBooks}>Search</FormBtn>
-                <FormBtn onClick={this.reloadState}>Reload State</FormBtn>
-              </form>
+              <div className="container-fluid">
+                <h3>SEARCH</h3>
+                <form>
+                  <Input />
+                  <FormBtn onClick={this.searchForBooks}>Search</FormBtn>
+                  <FormBtn onClick={this.reloadState}>Reload State</FormBtn>
+                </form>
+              </div>
             </Jumbotron>
           </Col>
         </Row>
@@ -72,12 +62,33 @@ class Books extends Component {
         <Row>
           <Col size="md-12">
             <Jumbotron>
-              <h3>RESULTS</h3>
               <List>
+                <h3>RESULTS</h3>
+
                 {this.state.books.map(book => (
                   <ListItem key={book.id}>
-                    <h4>{book.title}</h4>
-                    <p>{book.author}</p>
+                    <Row>
+                      <Col size="md-12">
+                        {" "}
+                        <h4>
+                          {book.title} - {book.author}
+                        </h4>
+                        <hr />
+                      </Col>
+                    </Row>
+                    <Row className="img-desc">
+                      <Col size="md-2">
+                        <img src={book.image} alt="book-thumbnail" />
+                      </Col>
+                      <Col size="md-10">
+                        <p>
+                          {book.description} - <a href={book.link}>See more</a>
+                        </p>
+                        <p onClick={() => GoogleBooksAPI.saveBook(book)}>
+                          Save
+                        </p>
+                      </Col>
+                    </Row>
                   </ListItem>
                 ))}
               </List>
