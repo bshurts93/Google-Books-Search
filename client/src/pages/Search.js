@@ -81,6 +81,9 @@ class Books extends Component {
                               >
                                 Save
                               </button>
+                              <a href={book.link} className="btn btn-primary">
+                                See More
+                              </a>
                             </div>
                           </Col>
                         </Row>
