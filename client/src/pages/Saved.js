@@ -23,6 +23,14 @@ class Saved extends Component {
 
   deleteBook(id) {
     GoogleBooksAPI.deleteBook(id);
+    fetch("/books/" + id, {
+      method: "DELETE",
+      body: JSON.stringify({ id: id })
+    }).then(res => {
+      res.json();
+      console.log("DELETED");
+      this.loadAllBooks();
+    });
   }
 
   render() {
