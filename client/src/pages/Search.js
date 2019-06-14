@@ -70,10 +70,7 @@ class Books extends Component {
                           </Col>
                           <Col size="md-11">
                             <div className="description">
-                              <p>
-                                {book.description} -{" "}
-                                <a href={book.link}>See more</a>
-                              </p>
+                              <p>{book.description}</p>
 
                               <button
                                 className="btn btn-primary"

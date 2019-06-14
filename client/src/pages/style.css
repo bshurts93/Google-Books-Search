@@ -18,6 +18,11 @@ a {
   transition: 0.8s all !important;
 }
 
+/* NAV */
+.bg-light {
+  background-color: #b5edba !important;
+}
+
 /* HOVER */
 a .btn:hover,
 .btn-primary:hover {
